@@ -1,5 +1,4 @@
 import boto3, os
-from typing import Annotated
 from fastapi import FastAPI, File, UploadFile
 from dotenv import load_dotenv
 
@@ -15,6 +14,13 @@ s3 = boto3.client(
     aws_access_key_id=AWS_ACCESS_KEY_ID,
     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
 )
+
+
+@app.get("/")
+def home():
+    return {
+        "message": "Hello World! This is the home page of the API. Please visit /docs to see the API documentation."
+    }
 
 
 @app.post("/uploadfile/")
